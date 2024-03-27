@@ -74,20 +74,20 @@ def intersect(list1, list2):
     return SkipList(answer)
 
 
-def intersect_skip(l1: SkipList, l2: SkipList):
+def intersect_skip(l1: SkipList, l2: SkipList) -> SkipList:
     answer = []
     p1 = l1.start
     p2 = l2.start
     while p1 is not None and p2 is not None:
-        if (p1.element == p2.element):
+        if p1.element == p2.element:
             answer.append(p1.element)
             p1 = p1.next
             p2 = p2.next
-        elif (p2.skip is not None and p2.skip.element <= p1.element):
-            p2 = p2.skip
-        elif (p1.skip is not None and p1.skip.element <= p2.element):
+        elif p1.skip is not None and p1.skip.element <= p2.element:
             p1 = p1.skip
-        elif (p1.element < p2.element):
+        elif p2.skip is not None and p2.skip.element <= p1.element:
+            p2 = p2.skip
+        elif p1.element < p2.element:
             p1 = p1.next
         else:
             p2 = p2.next
